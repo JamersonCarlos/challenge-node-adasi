@@ -1,20 +1,19 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/sequelize');
 
-const tarefa = (sequelize, DataTypes) => { 
-    const Tarefa = sequelize.define('Tarefa', { 
-        id: { 
-            type: DataTypes.UUID, 
-            defaultValue: DataTypes.UUIDV4, 
-            primaryKey: true, 
-        }, 
-        nome: { 
-            type: DataTypes.STRING, 
-            allowNull: false, 
-        }
-    });
 
-    return Tarefa; 
-};
+const Tarefa = sequelize.define('Tarefa', { 
+    id: { 
+        type: DataTypes.UUID, 
+        defaultValue: DataTypes.UUIDV4, 
+        primaryKey: true, 
+    }, 
+    nome: { 
+        type: DataTypes.STRING, 
+        allowNull: false, 
+    }
+});
 
-module.exports = tarefa; 
+
+
+module.exports = Tarefa; 
