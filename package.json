@@ -1,0 +1,16 @@
+{
+  "name": "challenge-node-adasi",
+  "version": "1.0.0",
+  "description": "Desenvolver uma API RESTful em Node.js para gerenciar cursos, estudantes, tarefas e atividades, incluindo funcionalidades específicas de agendamento de atividades, seguindo regras de negócio precisas.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "sequelize": "^6.37.3"
+  }
+}
