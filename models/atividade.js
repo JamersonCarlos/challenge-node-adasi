@@ -6,8 +6,8 @@ const Estudante = require('./estudante');
 
 const Atividade = sequelize.define('Atividade', {
     id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4, 
+        type: DataTypes.INTEGER,
+        autoIncrement: true, 
         primaryKey: true,
     },
     data: {
@@ -31,7 +31,7 @@ const Atividade = sequelize.define('Atividade', {
         allowNull: true,  
     },
     tarefaId: {
-        type: DataTypes.UUID, 
+        type: DataTypes.INTEGER, 
         references: {
             model: 'Tarefas',  
             key: 'id',

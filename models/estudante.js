@@ -8,6 +8,7 @@ const Estudante = sequelize.define('Estudante', {
         type: DataTypes.STRING, 
         allowNull: false, 
         unique: true,
+        primaryKey: true, 
     }, 
     nome: { 
         type: DataTypes.STRING, 
@@ -19,11 +20,12 @@ const Estudante = sequelize.define('Estudante', {
         unique: true, 
     },
     curso: { 
-        type: DataTypes.UUID, 
+        type: DataTypes.INTEGER, 
         references: { 
             model: 'Cursos',
             key: 'id',
-        }
+        }, 
+        allowNull: false, 
     }
 });
 
