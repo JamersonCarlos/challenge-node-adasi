@@ -11,7 +11,7 @@ const Atividade = sequelize.define('Atividade', {
         primaryKey: true,
     },
     data: {
-        type: DataTypes.DATEONLY,  
+        type: DataTypes.DATE,  
         allowNull: false,
     },
     hora_agendamento_inicio: {
