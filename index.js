@@ -1,17 +1,16 @@
 const express = require('express');
+const routers = require('./api');
+const { sequelize } = require('./models');
+
 const app = express();
 const port = 3000; // Variável ambiente 
 
-// Importando as rotas referentes a cada objeto. 
-const cursos = require('./api/cursos');
-const estudantes = require('./api/estudantes');
-const tarefas = require('./api/tarefas');
-const atividades = require('./api/atividades');
+app.use(express.json())
+app.use('/', routers); 
 
-app.use('/cursos', cursos);
-app.use('/estudantes', estudantes);
-app.use('/tarefas', tarefas);
-app.use('/atividades', atividades);
+sequelize.sync().then(() => { 
+    console.log('Banco conectado com sucesso!');
+});
 
 app.listen(port, () => { 
     console.log(`App rodando na porta ${port}`);
