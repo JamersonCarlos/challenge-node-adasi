@@ -1,7 +1,7 @@
-const sequelize = require("../config/sequelize");
 const { DataTypes } = require('sequelize');
-const Curso = require('./Curso');
+const sequelize = require("../config/sequelize");
 
+const Curso = require('./curso');
 
 const Estudante = sequelize.define('Estudante', { 
     cpf: { 
@@ -28,7 +28,7 @@ const Estudante = sequelize.define('Estudante', {
 });
 
 Estudante.belongsTo(Curso, { foreignKey: 'cursoId' });
-Curso.hasMany(Aluno, { foreignKey: 'cursoId' });
+Curso.hasMany(Estudante, { foreignKey: 'cursoId' });
 
 
 module.exports = Estudante; 

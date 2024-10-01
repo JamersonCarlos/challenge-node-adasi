@@ -1,7 +1,8 @@
-const sequelize = require("../config/sequelize");
 const { DataTypes } = require('sequelize');
-const Tarefa = require('./Tarefa');  
-const Estudante = require('./Estudante'); 
+const sequelize = require("../config/sequelize");
+
+const Tarefa = require('./tarefa');  
+const Estudante = require('./estudante'); 
 
 const Atividade = sequelize.define('Atividade', {
     id: {
@@ -38,10 +39,10 @@ const Atividade = sequelize.define('Atividade', {
         allowNull: false,
     },
     estudanteId: {
-        type: DataTypes.UUID,  
+        type: DataTypes.STRING,  
         references: {
             model: 'Estudantes', 
-            key: 'id',
+            key: 'cpf',
         },
         allowNull: false,
     }
