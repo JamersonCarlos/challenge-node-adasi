@@ -25,10 +25,12 @@ const Atividade = sequelize.define('Atividade', {
     hora_inicio: {
         type: DataTypes.TIME, 
         allowNull: true,  
+        defaultValue: null, 
     },
     hora_termino: {
         type: DataTypes.TIME, 
-        allowNull: true,  
+        allowNull: true, 
+        defaultValue: null,  
     },
     tarefaId: {
         type: DataTypes.INTEGER, 
