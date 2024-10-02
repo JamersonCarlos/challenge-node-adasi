@@ -1,5 +1,21 @@
 const express = require('express');
 const router = express.Router();
 
+router.post('', async (req, res) => { 
+    const { cpf, nome, curso, matricula } = req.body; 
+    try {
+        const novoEstudante = await Estudante.create({ cpf, nome, curso, matricula }); 
+        res.status(201).json({message: "Estudante criado com sucesso!", novoEstudante});
+    } catch (error) {
+        if(error.name == "SequelizeUniqueConstraintError") { 
+            res.status(409).json({message: "Já existe um usuário cadastrado com esse CPF ou Matricula", error});
+        } else if (error.name == "SequelizeForeignKeyConstraintError") { 
+            res.status(400).json({message: "Curso especificado não existe"});
+        } else { 
+            res.status(500).json({message: "Erro ao inserir estudante", error});
+        }
+    }
+}); 
+
 module.exports = router; 
 
