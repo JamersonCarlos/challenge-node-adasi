@@ -36,5 +36,18 @@ router.get('/:cpf', async (req, res) => {
         res.status(500).json({message: `Erro ao buscar curso id: ${id}`, error});       
     }
 });
+
+router.put('/:cpf', async (req, res) => { 
+    const { cpf } = req.params; 
+    const { nome, curso, matricula } = req.body; 
+    try { 
+        await Estudante.update({nome, curso, matricula}, { 
+            where: { cpf: cpf }
+        });
+        res.status(200).json({message: "Curso atualizado com sucesso"});
+    } catch(error) { 
+        res.status(404).json({message: "Curso não encontrado"});
+    }
+});
 module.exports = router; 
 
