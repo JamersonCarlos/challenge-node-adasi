@@ -3,7 +3,7 @@ const sequelize = require("../config/sequelize");
 
 const Curso = require('./curso');
 
-const Estudante = sequelize.define('Estudante', { 
+const Estudante = sequelize.define('estudante', { 
     cpf: { 
         type: DataTypes.STRING, 
         allowNull: false, 
@@ -19,7 +19,7 @@ const Estudante = sequelize.define('Estudante', {
         allowNull: false, 
         unique: true, 
     },
-    curso: { 
+    cursoId: { 
         type: DataTypes.INTEGER, 
         references: { 
             model: 'Cursos',
@@ -27,6 +27,8 @@ const Estudante = sequelize.define('Estudante', {
         }, 
         allowNull: false, 
     }
+}, { 
+    timestamps: false, 
 });
 
 Estudante.belongsTo(Curso, { foreignKey: 'cursoId' });

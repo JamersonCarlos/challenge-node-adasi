@@ -4,7 +4,7 @@ const sequelize = require("../config/sequelize");
 const Tarefa = require('./tarefa');  
 const Estudante = require('./estudante'); 
 
-const Atividade = sequelize.define('Atividade', {
+const Atividade = sequelize.define('atividade', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true, 
@@ -48,6 +48,8 @@ const Atividade = sequelize.define('Atividade', {
         },
         allowNull: false,
     }
+}, { 
+    timestamps: false, 
 });
 
 // Relacionamento com Tarefa (muitos para um)
