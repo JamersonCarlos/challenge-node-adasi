@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Atividade = require('../models/atividade')
 
 router.post('', async (req, res) => { 
     const { data, hora_agendamento_inicio, hora_agendamento_termino, tarefaId, estudanteId } = req.body; 
