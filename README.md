@@ -73,3 +73,7 @@ Aqui está a estrutura básica do projeto:
 - tests/ - Contém os testes automatizados para cada funcionalidade do sistema.
 - .env - Arquivo de configuração de variáveis de ambiente, com informações do banco de dados.
 
+### 8. Documentação do projeto 
+A descrição dos endpoints e modelo de entrada de dados, no link: https://documenter.getpostman.com/view/22753560/2sAXxJjFKd
+
+
