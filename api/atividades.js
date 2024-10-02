@@ -108,5 +108,19 @@ router.post('/iniciar/:id', async (req, res) => {
     }
 });
 
+//Finalizar atividade
+router.post('/finalizar/:id', async(req, res) => { 
+    const { id } = req.params; 
+    const atividade = await Atividade.findAll({where: {id: id}});
+    const hora_inicio = atividade[0].dataValues.hora_inicio;
+    const hora_atual = new Date();
+    if(!hora_inicio) { 
+        res.status(400).json({message: "Atividade ainda não foi iniciada!"}); 
+    } else { 
+        await Atividade.update({hora_termino: `${hora_atual.getHours}:${hora_atual.getMinutes}`}, {where: {id:id}});
+        res.status(200).json({message: "Atividade finalizada com sucesso!"});
+    }
+});
+
 
 module.exports = router; 
