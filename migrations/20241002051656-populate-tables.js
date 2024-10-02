@@ -27,7 +27,7 @@ module.exports = {
 
     await queryInterface.bulkInsert('atividades', [
       {
-        data: new Date('2024-10-05'),
+        data:  new Date('2024-10-29'),
         hora_agendamento_inicio: '08:00:00',
         hora_agendamento_termino: '09:00:00',
         hora_inicio: null,
@@ -36,7 +36,7 @@ module.exports = {
         estudanteId: '12345678900' 
       },
       {
-        data: new Date('2024-10-06'),
+        data:  new Date('2024-10-29'),
         hora_agendamento_inicio: '10:00:00',
         hora_agendamento_termino: '11:00:00',
         hora_inicio: null,
@@ -45,7 +45,7 @@ module.exports = {
         estudanteId: '98765432100' 
       },
       {
-        data: new Date('2024-10-07'),
+        data:  new Date('2024-10-29'),
         hora_agendamento_inicio: '14:00:00',
         hora_agendamento_termino: '15:00:00',
         hora_inicio: null,
