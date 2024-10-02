@@ -17,6 +17,14 @@ router.post('', async (req, res) => {
     }).catch(error => res.status(500).json({message: "Erro ao buscar tarefas"}, error));
 });
 
+router.get('', async (req ,res) => { 
+    try { 
+        const tarefas = await Tarefa.findAll();
+        res.status(200).json({message: "Lista de Tarefas", tarefas});
+    } catch(error) { 
+        res.status(500).json({message: "Erro ao buscar tarefas", error});
+    }
+});
 
 module.exports = router; 
 
