@@ -54,5 +54,16 @@ router.put('/:id', async (req, res) => {
         res.status(404).json({message: "Usuário não encontrado"});
     }
 });
+
+// Rota para remover um curso
+router.delete('/:id', async (req, res) => { 
+    const { id } = req.params; 
+    try { 
+        await Curso.destroy({where: {id: id}});
+        res.status(200).json({message: "Curso removido com sucesso"});       
+    } catch(error) { 
+        res.status(404).json({message: "Curso não encontrado!"});
+    }
+});
 module.exports = router; 
 
