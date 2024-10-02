@@ -19,6 +19,16 @@ router.post('', async (req, res) => {
     }).catch(error => res.status(500).json({message: "Erro ao buscar cursos"}, error));
 });
 
+// Rota para listar os cursos cadastrados
+router.get('', async (req, res) => { 
+    try {
+         const cursos = await Curso.findAll();
+         res.status(200).json(cursos);
+    } catch (error) {
+         res.status(500).json({message: "Erro ao buscar usuários", error});
+    } 
+ });
+ 
 
 module.exports = router; 
 
