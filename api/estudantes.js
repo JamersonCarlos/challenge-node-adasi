@@ -17,5 +17,14 @@ router.post('', async (req, res) => {
     }
 }); 
 
+router.get('', async (req, res) => { 
+    try { 
+        const estudantes = await Estudante.findAll();
+        res.status(200).json({message: "Lista de estudantes", estudantes}); 
+    } catch(error) { 
+        res.status(500).json({message: "Erro ao buscar estudantes", error});
+    }
+});
+
 module.exports = router; 
 
