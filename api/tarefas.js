@@ -41,5 +41,19 @@ router.get('/:id', async (req, res) => {
     
 });
 
+router.put('/:id', async (req, res) => {
+    const { id } = req.params; 
+    const { nome } = req.body; 
+    try { 
+        await Tarefa.update({nome}, { 
+            where: { id: id }
+        });
+        res.status(200).json({message: "Curso atualizado com sucesso"});
+    } catch(error) { 
+        res.status(404).json({message: "Usuário não encontrado"});
+    }
+});
+
+
 module.exports = router; 
 
