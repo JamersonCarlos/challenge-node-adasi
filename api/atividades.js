@@ -71,5 +71,14 @@ router.put('/:id', async (req, res) => {
     }
 }); 
 
+router.delete('/:id', async (req, res) => { 
+    const {id} = req.params;
+    try { 
+        await Atividade.destroy({where: { id: id}})
+        res.status(200).json({message: "Atividade deletada com sucesso!"});
+    } catch(error) {    
+        res.status(500).json({message: "Atividade não encontrada!"});
+    }
+});
 
 module.exports = router; 
