@@ -81,4 +81,32 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+//Iniciar Atividade
+router.post('/iniciar/:id', async (req, res) => { 
+    const {id} = req.params; 
+    const atividade = await Atividade.findAll({where: {id: id}});
+    const diferenca_minutos = diferenca_minutos(atividade, true);
+
+    //Verificando condições
+    if (dataAgendamentoObj.toISOString().split("T")[0] == dataAtual.toISOString().split("T")[0]) { 
+        if (diferenca_minutos <= 15) { 
+            try {
+                await Atividade.update({ hora_inicio: `${dataAtual.getHours}:${dataAtual.getMinutes}`}, {where: {id: id}}); 
+                res.status(200).json({message: `Atividade iniciada com sucesso: ${dataAtual}`});
+            } catch (error) {
+                res.status(500).json({message: "Erro ao iniciar atividade!"});
+            }
+        } else { 
+            if (diferenca_minutos(atividade, false) < 0) { 
+                res.status(409).json({message: `A atividade não pode ser iniciada mais de 15 minutos antes`});
+            } else { 
+                res.status(409).json({message: `A atividade não pode ser iniciada mais de 15 minutos depois`});
+            }
+        }
+    } else { 
+        res.status(400).json({message: "Não é possivel iniciar atividade em outra data"})
+    }
+});
+
+
 module.exports = router; 
