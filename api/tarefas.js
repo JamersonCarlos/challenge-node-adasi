@@ -26,5 +26,20 @@ router.get('', async (req ,res) => {
     }
 });
 
+router.get('/:id', async (req, res) => { 
+    const { id } = req.params; 
+    try { 
+        const tarefaResult = await Tarefa.findAll({where: { id: id}});
+        if(tarefaResult.length != 0) {
+            res.status(200).json(tarefaResult[0]); 
+        } else { 
+            res.status(400).json({message: "Nenhuma tarefa encontrada"});
+        }
+    } catch(error) { 
+        res.status(500).json({message: "Erro ao buscar tarefa", error});
+    }
+    
+});
+
 module.exports = router; 
 
