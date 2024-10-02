@@ -49,5 +49,15 @@ router.put('/:cpf', async (req, res) => {
         res.status(404).json({message: "Curso não encontrado"});
     }
 });
+
+router.delete('/:cpf', async (req, res) => { 
+    const { cpf } = req.params;  
+    try { 
+        await Estudante.destroy({where: {cpf: cpf}});
+        res.status(200).json({message: "Estudante removido com sucesso"});       
+    } catch(error) { 
+        res.status(404).json({message: "Estudante não encontrado!"});
+    }
+});
 module.exports = router; 
 
