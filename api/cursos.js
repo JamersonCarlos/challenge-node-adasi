@@ -28,6 +28,18 @@ router.get('', async (req, res) => {
          res.status(500).json({message: "Erro ao buscar usuários", error});
     } 
  });
+
+// Rota para buscar um curso específico 
+router.get('/:id', async (req, res) => { 
+    const { id } = req.params; 
+    try {
+        const curso = await Curso.findAll({where: {id: id}})[0];
+        res.status(200).json({curso});
+    } catch (error) {   
+        res.status(500).json({message: `Erro ao buscar curso id: ${id}`, error});       
+    }
+
+});
  
 
 module.exports = router; 
