@@ -29,5 +29,13 @@ router.post('', async (req, res) => {
     }
 });
 
+router.get('', async (req, res) => { 
+    try {
+        const atividades = await Atividade.findAll();
+        res.status(200).json({message: "Lista de atividades", atividades});
+    } catch (error) {
+        res.status(500).json({message: "Erro ao consultar listas"});
+    }
+});
 
 module.exports = router; 
