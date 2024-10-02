@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Tarefa = require('../models/tarefa');
 
 router.post('', async (req, res) => { 
     const { nome } = req.body; 

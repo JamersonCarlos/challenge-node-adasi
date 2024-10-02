@@ -1,6 +1,5 @@
 const express = require('express');
 const routers = require('./api');
-const { sequelize } = require('./models');
 
 const app = express();
 const port = 3000; // Variável ambiente 
@@ -8,14 +7,15 @@ const port = 3000; // Variável ambiente
 app.use(express.json())
 app.use('/', routers); 
 
-sequelize.sync().then(() => { 
-    console.log('Banco conectado com sucesso!');
-});
+// sequelize.sync().then(() => { 
+//     console.log('Banco conectado com sucesso!');
+// });
 
 app.listen(port, () => { 
     console.log(`App rodando na porta ${port}`);
 });
 
+module.exports = app; 
 
 
 

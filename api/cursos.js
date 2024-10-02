@@ -16,7 +16,7 @@ router.post('', async (req, res) => {
         } else { 
             return res.status(409).json({ message: "Esse curso já existe!"});
         }
-    }).catch(error => res.status(500).json({message: "Erro ao buscar cursos"}, error));
+    }).catch(error => res.status(400).json({message: "Nome invalido!"}, error));
 });
 
 // Rota para listar os cursos cadastrados
@@ -46,7 +46,7 @@ router.put('/:id', async (req, res) => {
     const { id } = req.params; 
     const { nome } = req.body; 
     try { 
-        await Curso.update({nome}, { 
+        const cursoUpdate = await Curso.update({nome}, { 
             where: { id: id }
         });
         res.status(200).json({message: "Curso atualizado com sucesso"});

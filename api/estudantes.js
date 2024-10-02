@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const Estudante = require('../models/estudante');
 
 router.post('', async (req, res) => { 
-    const { cpf, nome, curso, matricula } = req.body; 
+    const { cpf, nome, cursoId, matricula } = req.body; 
     try {
-        const novoEstudante = await Estudante.create({ cpf, nome, curso, matricula }); 
+        const novoEstudante = await Estudante.create({ cpf, nome, cursoId, matricula }); 
         res.status(201).json({message: "Estudante criado com sucesso!", novoEstudante});
     } catch (error) {
         if(error.name == "SequelizeUniqueConstraintError") { 
@@ -39,14 +40,14 @@ router.get('/:cpf', async (req, res) => {
 
 router.put('/:cpf', async (req, res) => { 
     const { cpf } = req.params; 
-    const { nome, curso, matricula } = req.body; 
+    const { nome, cursoId, matricula } = req.body; 
     try { 
-        await Estudante.update({nome, curso, matricula}, { 
+        await Estudante.update({nome, cursoId, matricula}, { 
             where: { cpf: cpf }
         });
-        res.status(200).json({message: "Curso atualizado com sucesso"});
+        res.status(200).json({message: "Estudante atualizado com sucesso"});
     } catch(error) { 
-        res.status(404).json({message: "Curso não encontrado"});
+        res.status(404).json({message: "Estudante não encontrado"});
     }
 });
 

@@ -1,4 +1,4 @@
-export function converter_horas_para_minutos(hora_agendamento_inicio, hora_agendamento_termino) { 
+function converter_horas_para_minutos(hora_agendamento_inicio, hora_agendamento_termino) { 
     const [hora_inicio, minuto_inicio] = hora_agendamento_inicio.split(':').map(Number);    
     const [hora_termino, minuto_termino] = hora_agendamento_termino.split(':').map(Number);
     
@@ -10,16 +10,15 @@ export function converter_horas_para_minutos(hora_agendamento_inicio, hora_agend
     const duracaoMinutos = Math.abs(totalMinutosInicio - totalMinutosTermino); 
     const duracaoHoras = duracaoMinutos / 60; 
 
-    return [duracaoHoras, minuto_inicio, minuto_termino]; 
+    return [duracaoHoras, hora_inicio, hora_termino, minuto_inicio, minuto_termino]; 
 }
-
-export function compara_datas(data) { 
-    const dataAgendamentoObj = new Date(data.replace(' ', 'T')); 
+function compara_datas(data) { 
+    const dataAgendamentoObj = new Date(data); 
     const dataAtual = new Date();
-    return (dataAgendamentoObj.getDay >= dataAtual.getDay && dataAgendamentoObj.getMonth >= dataAtual.getMonth && dataAgendamentoObj.getFullYear >= dataAtual.getFullYear); 
+    return (dataAgendamentoObj.getTime >= dataAtual.getTime); 
 }
 
-export function diferenca_minutos(atividade, abs){ 
+function diferenca_minutos(atividade, abs){ 
     dataAgendamentoString = atividade[0].dataValues.data.toISOString();
     hora_agendamento_inicio = atividade[0].dataValues.hora_agendamento_inicio; 
 
@@ -36,3 +35,9 @@ export function diferenca_minutos(atividade, abs){
     }
     return (total_minutos_inicio_atividade - total_minutos_agendamento_inicio); 
 }
+
+module.exports = {
+    converter_horas_para_minutos,
+    compara_datas,
+    diferenca_minutos
+};
