@@ -45,9 +45,9 @@ router.put('/:cpf', async (req, res) => {
         await Estudante.update({nome, cursoId, matricula}, { 
             where: { cpf: cpf }
         });
-        res.status(200).json({message: "Curso atualizado com sucesso"});
+        res.status(200).json({message: "Estudante atualizado com sucesso"});
     } catch(error) { 
-        res.status(404).json({message: "Curso não encontrado"});
+        res.status(404).json({message: "Estudante não encontrado"});
     }
 });
 
