@@ -26,5 +26,15 @@ router.get('', async (req, res) => {
     }
 });
 
+
+router.get('/:cpf', async (req, res) => { 
+    const { cpf } = req.params; 
+    try {
+        const estudante = await Estudante.findAll({where: {cpf: cpf}})[0];
+        res.status(200).json({estudante});
+    } catch (error) {   
+        res.status(500).json({message: `Erro ao buscar curso id: ${id}`, error});       
+    }
+});
 module.exports = router; 
 
